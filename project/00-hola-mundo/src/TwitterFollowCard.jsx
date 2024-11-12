@@ -1,8 +1,8 @@
 import { useState } from "react"
 
 // eslint-disable-next-line react/prop-types
-export function TwitterFollowCard ({formatUserName, userName, name}) {
-    const [isFollowing,setIsFollowing] = useState(false)
+export function TwitterFollowCard ({userName, name, initialIsFollowing}) {
+    const [isFollowing,setIsFollowing] = useState(initialIsFollowing)
     
     const text = isFollowing ? 'Siguiendo' : 'Seguir'
     const buttonClassName = isFollowing 
@@ -19,13 +19,14 @@ export function TwitterFollowCard ({formatUserName, userName, name}) {
                 <img className='tw-followCard-avatar' alt = "El avatar de pabloromeroo9" src = {`https://unavatar.io/x/${userName}`}/>
                 <div className='tw-followCard-info'>
                     <strong>{name}</strong>
-                    <span className='tw-followCard-infoUserName'>{formatUserName(userName)}</span>
+                    <span className='tw-followCard-infoUserName'>@{(userName)}</span>
                 </div>
             </header>
 
             <aside>
                 <button className= {buttonClassName} onClick={handleClick}>
-                    {text}
+                    <span className='tw-followCard-text'>{text}</span>
+                    <span className='tw-followCard-stopFollow'>Dejar de seguir</span>
                 </button>
             </aside>
         </article>
